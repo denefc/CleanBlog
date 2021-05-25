@@ -8,7 +8,7 @@ app.get("/", (req, res) => {
        title: "Blog title", 
        description: "Blog description" 
     };
-  res.send(photo);
+  res.send(blog);
 });
 
 const port = 3000;
