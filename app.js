@@ -8,11 +8,15 @@ const pageController = require('./controllers/pageController');
 const app = express();
 
 //connect DB
-mongoose.connect("mongodb://localhost/cleanblog-test-db", {
+mongoose.connect('mongodb+srv://dene:MGnrkUfU4lmZJvK3@cluster0.v8yum.mongodb.net/pcat-db?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
-});
+}).then(()=> {
+  console.log('DB CONNECTED!')
+}).catch((err)=> {
+  console.log(err)
+})
 
 //Template Engine
 app.set("view engine", "ejs");
@@ -39,7 +43,7 @@ app.get("/about", pageController.getAboutPage);
 app.get("/add_post", pageController.getAddPage);
 
 
-const port = 3000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Sunucu ${port} portunda başlatıldı..`);
 });
